@@ -1,0 +1,225 @@
+@prefix : <http://www.example.org/twinMap/Achoo/> .
+@prefix aas: <https://admin-shell.io/aas/3/0/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@base <http://www.example.org/twinMap/Achoo/> .
+
+<http://www.example.org/twinMap/Achoo> rdf:type owl:Ontology ;
+                                        owl:imports <https://admin-shell.io/aas/3/1/> .
+
+#################################################################
+#    Object Properties
+#################################################################
+
+###  http://www.example.org/twinMap/Achoo#ParameterProperty
+:ParameterProperty rdf:type owl:ObjectProperty .
+
+
+###  http://www.example.org/twinMap/Achoo#SkillProperty
+:SkillProperty rdf:type owl:ObjectProperty .
+
+
+###  http://www.example.org/twinMap/Achoo#hasMode
+:hasMode rdf:type owl:ObjectProperty ;
+         rdfs:subPropertyOf :SkillProperty ;
+         rdfs:range :Mode .
+
+
+###  http://www.example.org/twinMap/Achoo#hasParameter
+:hasParameter rdf:type owl:ObjectProperty ;
+              rdfs:subPropertyOf :SkillProperty ;
+              rdfs:range :Parameter .
+
+
+###  http://www.example.org/twinMap/Achoo#hasValue
+:hasValue rdf:type owl:ObjectProperty ;
+          rdfs:subPropertyOf :ParameterProperty .
+
+
+###  http://www.example.org/twinMap/Achoo#referencedBy
+:referencedBy rdf:type owl:ObjectProperty ;
+              owl:inverseOf :references ;
+              rdfs:domain <https://admin-shell.io/aas/3/1/HasDataSpecification> ;
+              rdfs:range :AASSpecification .
+
+
+###  http://www.example.org/twinMap/Achoo#references
+:references rdf:type owl:ObjectProperty ;
+            rdfs:domain :AASSpecification ;
+            rdfs:range <https://admin-shell.io/aas/3/1/HasDataSpecification> .
+
+
+###  http://www.example.org/twinMap/Achoo#uses
+:uses rdf:type owl:ObjectProperty ;
+      rdfs:subPropertyOf :SkillProperty ;
+      rdfs:range :Skill .
+
+
+#################################################################
+#    Data properties
+#################################################################
+
+###  http://www.example.org/twinMap/Achoo#ParameterProperty
+:ParameterProperty rdf:type owl:DatatypeProperty .
+
+
+###  http://www.example.org/twinMap/Achoo#SkillProperty
+:SkillProperty rdf:type owl:DatatypeProperty .
+
+
+###  http://www.example.org/twinMap/Achoo#hasDirection
+:hasDirection rdf:type owl:DatatypeProperty ;
+              rdfs:subPropertyOf :ParameterProperty ;
+              rdfs:range xsd:string .
+
+
+###  http://www.example.org/twinMap/Achoo#hasSemanticId
+:hasSemanticId rdf:type owl:DatatypeProperty ;
+               rdfs:domain :AASSpecification ;
+               rdfs:range xsd:anyURI .
+
+
+###  http://www.example.org/twinMap/Achoo#hasType
+:hasType rdf:type owl:DatatypeProperty ;
+         rdfs:subPropertyOf :ParameterProperty ;
+         rdfs:range xsd:string .
+
+
+###  http://www.example.org/twinMap/Achoo#isDisabled
+:isDisabled rdf:type owl:DatatypeProperty ;
+            rdfs:subPropertyOf :SkillProperty ;
+            rdfs:domain :Skill ;
+            rdfs:range xsd:boolean .
+
+
+#################################################################
+#    Classes
+#################################################################
+
+###  http://www.example.org/twinMap/Achoo#AASSpecification
+:AASSpecification rdf:type owl:Class ;
+                  rdfs:comment "Superclass for every concept that is part of an officially released AAS Spec" .
+
+
+###  http://www.example.org/twinMap/Achoo#AllowedPersonalLimitations
+:AllowedPersonalLimitations rdf:type owl:Class ;
+                            rdfs:subClassOf :SubmodelElementList .
+
+
+###  http://www.example.org/twinMap/Achoo#AssetInterfaceDescription
+:AssetInterfaceDescription rdf:type owl:Class ;
+                           rdfs:subClassOf :Submodel .
+
+
+###  http://www.example.org/twinMap/Achoo#ControlComponentInstance
+:ControlComponentInstance rdf:type owl:Class ;
+                          rdfs:subClassOf :Submodel .
+
+
+###  http://www.example.org/twinMap/Achoo#DigitalNameplateForIndustrialEquipment
+:DigitalNameplateForIndustrialEquipment rdf:type owl:Class ;
+                                        rdfs:subClassOf :Submodel .
+
+
+###  http://www.example.org/twinMap/Achoo#Endpoint
+:Endpoint rdf:type owl:Class ;
+          rdfs:subClassOf :SubmodelElementCollection .
+
+
+###  http://www.example.org/twinMap/Achoo#EndpointMetadata
+:EndpointMetadata rdf:type owl:Class ;
+                  rdfs:subClassOf :SubmodelElementCollection .
+
+
+###  http://www.example.org/twinMap/Achoo#ErgonomicWorkstationProfile
+:ErgonomicWorkstationProfile rdf:type owl:Class ;
+                             rdfs:subClassOf :SubmodelElementCollection .
+
+
+###  http://www.example.org/twinMap/Achoo#GeneralSkillDemand
+:GeneralSkillDemand rdf:type owl:Class ;
+                    rdfs:subClassOf :SubmodelElementList .
+
+
+###  http://www.example.org/twinMap/Achoo#GeneralWorkstationData
+:GeneralWorkstationData rdf:type owl:Class ;
+                        rdfs:subClassOf :SubmodelElementCollection .
+
+
+###  http://www.example.org/twinMap/Achoo#InteractionMetadata
+:InteractionMetadata rdf:type owl:Class ;
+                     rdfs:subClassOf :SubmodelElementCollection .
+
+
+###  http://www.example.org/twinMap/Achoo#Interface
+:Interface rdf:type owl:Class ;
+           rdfs:subClassOf :SubmodelElementCollection .
+
+
+###  http://www.example.org/twinMap/Achoo#Mode
+:Mode rdf:type owl:Class ;
+      rdfs:subClassOf :SubmodelElementCollection .
+
+
+###  http://www.example.org/twinMap/Achoo#Operation
+:Operation rdf:type owl:Class ;
+           rdfs:subClassOf :SubmodelElement .
+
+
+###  http://www.example.org/twinMap/Achoo#Parameter
+:Parameter rdf:type owl:Class ;
+           rdfs:subClassOf :SubmodelElementCollection .
+
+
+###  http://www.example.org/twinMap/Achoo#ReferenceElement
+:ReferenceElement rdf:type owl:Class ;
+                  rdfs:subClassOf :SubmodelElement .
+
+
+###  http://www.example.org/twinMap/Achoo#Skill
+:Skill rdf:type owl:Class ;
+       rdfs:subClassOf :SubmodelElementCollection .
+
+
+###  http://www.example.org/twinMap/Achoo#Submodel
+:Submodel rdf:type owl:Class ;
+          rdfs:subClassOf :AASSpecification ;
+          rdfs:comment "AAS Submodel according to Specification" .
+
+
+###  http://www.example.org/twinMap/Achoo#SubmodelElement
+:SubmodelElement rdf:type owl:Class ;
+                 rdfs:subClassOf :AASSpecification .
+
+
+###  http://www.example.org/twinMap/Achoo#SubmodelElementCollection
+:SubmodelElementCollection rdf:type owl:Class ;
+                           rdfs:subClassOf :SubmodelElement .
+
+
+###  http://www.example.org/twinMap/Achoo#SubmodelElementList
+:SubmodelElementList rdf:type owl:Class ;
+                     rdfs:subClassOf :SubmodelElement .
+
+
+###  http://www.example.org/twinMap/Achoo#Value
+:Value rdf:type owl:Class ;
+       rdfs:subClassOf :SubmodelElementCollection .
+
+
+###  http://www.example.org/twinMap/Achoo#WorkstationWorkerMatchingData
+:WorkstationWorkerMatchingData rdf:type owl:Class ;
+                               rdfs:subClassOf :Submodel .
+
+
+#################################################################
+#    Annotations
+#################################################################
+
+:SkillProperty rdfs:comment "Properties of the \"Skill\" SMC" .
+
+
+###  Generated by the OWL API (version 4.5.29.2024-05-13T12:11:03Z) https://github.com/owlcs/owlapi
