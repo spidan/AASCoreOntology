@@ -39,6 +39,13 @@
           rdfs:subPropertyOf :ParameterProperty .
 
 
+###  http://www.example.org/twinMap/Achoo#modeledIn
+:modeledIn rdf:type owl:ObjectProperty ;
+           rdfs:subPropertyOf owl:topObjectProperty ;
+           rdfs:domain owl:Thing ;
+           rdfs:range :AASSpecification .
+
+
 ###  http://www.example.org/twinMap/Achoo#referencedBy
 :referencedBy rdf:type owl:ObjectProperty ;
               owl:inverseOf :references ;
@@ -50,6 +57,13 @@
 :references rdf:type owl:ObjectProperty ;
             rdfs:domain :AASSpecification ;
             rdfs:range <https://admin-shell.io/aas/3/1/HasDataSpecification> .
+
+
+###  http://www.example.org/twinMap/Achoo#semanticallyDefines
+:semanticallyDefines rdf:type owl:ObjectProperty ;
+                     rdfs:domain owl:Thing ;
+                     rdfs:range :ReferenceElement ;
+                     rdfs:comment "Property connecting a semanticID ReferenceElement to an entry in a semanticID ReferenceList" .
 
 
 ###  http://www.example.org/twinMap/Achoo#uses
