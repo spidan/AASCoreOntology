@@ -1,0 +1,152 @@
+@prefix : <http://www.example.com/TwinMap/Tool/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@base <http://www.example.com/TwinMap/Dummy/> .
+
+<http://www.example.com/TwinMap/Tool/> rdf:type owl:Ontology .
+
+#################################################################
+#    Object Properties
+#################################################################
+
+###  http://www.example.com/TwinMap/Tool/attachedTo
+:attachedTo rdf:type owl:ObjectProperty ;
+            rdfs:subPropertyOf :fits ;
+            rdfs:comment "One part is attached to another without additional tools or materials, eg plugged in" .
+
+
+###  http://www.example.com/TwinMap/Tool/connects
+:connects rdf:type owl:ObjectProperty ;
+          rdfs:subPropertyOf :uses ;
+          owl:inverseOf :isConnectedBy .
+
+
+###  http://www.example.com/TwinMap/Tool/fits
+:fits rdf:type owl:ObjectProperty ;
+      rdfs:subPropertyOf :uses ;
+      rdf:type owl:SymmetricProperty .
+
+
+###  http://www.example.com/TwinMap/Tool/gluedTo
+:gluedTo rdf:type owl:ObjectProperty ;
+         rdfs:subPropertyOf :fits ;
+         rdfs:comment "One part is attached to another with a sticky substance" .
+
+
+###  http://www.example.com/TwinMap/Tool/glues
+:glues rdf:type owl:ObjectProperty ;
+       rdfs:subPropertyOf :connects ;
+       owl:inverseOf :isGluedWith ;
+       rdfs:comment "The given material glues the referenced part" .
+
+
+###  http://www.example.com/TwinMap/Tool/isConnectedBy
+:isConnectedBy rdf:type owl:ObjectProperty ;
+               rdfs:subPropertyOf :uses .
+
+
+###  http://www.example.com/TwinMap/Tool/isGluedWith
+:isGluedWith rdf:type owl:ObjectProperty ;
+             rdfs:subPropertyOf :isConnectedBy .
+
+
+###  http://www.example.com/TwinMap/Tool/isScrewedWith
+:isScrewedWith rdf:type owl:ObjectProperty ;
+               rdfs:subPropertyOf :isConnectedBy ;
+               owl:inverseOf :screws .
+
+
+###  http://www.example.com/TwinMap/Tool/screwedTo
+:screwedTo rdf:type owl:ObjectProperty ;
+           rdfs:subPropertyOf :fits ;
+           rdfs:comment "One part is attached to another using screws" .
+
+
+###  http://www.example.com/TwinMap/Tool/screws
+:screws rdf:type owl:ObjectProperty ;
+        rdfs:subPropertyOf :connects ;
+        rdfs:comment "The given object attaches the given part to another by screwing" .
+
+
+###  http://www.example.com/TwinMap/Tool/usedOn
+:usedOn rdf:type owl:ObjectProperty ;
+        rdfs:subPropertyOf :uses ;
+        owl:inverseOf :usedWith ;
+        rdfs:range :Part .
+
+
+###  http://www.example.com/TwinMap/Tool/usedWith
+:usedWith rdf:type owl:ObjectProperty ;
+          rdfs:subPropertyOf :uses .
+
+
+###  http://www.example.com/TwinMap/Tool/uses
+:uses rdf:type owl:ObjectProperty ,
+               owl:TransitiveProperty ;
+      rdfs:domain :Part ;
+      rdfs:range :Part .
+
+
+#################################################################
+#    Classes
+#################################################################
+
+###  http://www.example.com/TwinMap/Tool/Bumper
+:Bumper rdf:type owl:Class ;
+        rdfs:subClassOf :Part .
+
+
+###  http://www.example.com/TwinMap/Tool/FlatWasher
+:FlatWasher rdf:type owl:Class ;
+            rdfs:subClassOf :Washer .
+
+
+###  http://www.example.com/TwinMap/Tool/Foglight
+:Foglight rdf:type owl:Class ;
+          rdfs:subClassOf :Light .
+
+
+###  http://www.example.com/TwinMap/Tool/Frame
+:Frame rdf:type owl:Class ;
+       rdfs:subClassOf :Part .
+
+
+###  http://www.example.com/TwinMap/Tool/Headlight
+:Headlight rdf:type owl:Class ;
+           rdfs:subClassOf :Light .
+
+
+###  http://www.example.com/TwinMap/Tool/Light
+:Light rdf:type owl:Class ;
+       rdfs:subClassOf :Part .
+
+
+###  http://www.example.com/TwinMap/Tool/LockWasher
+:LockWasher rdf:type owl:Class ;
+            rdfs:subClassOf :Washer .
+
+
+###  http://www.example.com/TwinMap/Tool/Part
+:Part rdf:type owl:Class .
+
+
+###  http://www.example.com/TwinMap/Tool/Screw
+:Screw rdf:type owl:Class ;
+       rdfs:subClassOf :Part .
+
+
+###  http://www.example.com/TwinMap/Tool/ScrewDriver
+:ScrewDriver rdf:type owl:Class ;
+             rdfs:subClassOf :Tool .
+
+
+###  http://www.example.com/TwinMap/Tool/Tool
+:Tool rdf:type owl:Class .
+
+
+###  http://www.example.com/TwinMap/Tool/Washer
+:Washer rdf:type owl:Class ;
+        rdfs:subClassOf :Part .
