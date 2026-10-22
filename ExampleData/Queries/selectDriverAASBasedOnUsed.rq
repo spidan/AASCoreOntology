@@ -1,0 +1,15 @@
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX ex: <http://example.org/>
+PREFIX owl:  <http://www.w3.org/2002/07/owl#> 
+PREFIX rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+PREFIX tool: <http://www.example.org/TwinMap/Tool/> 
+PREFIX aasCore: <http://www.example.org/twinMap/AASCore/> 
+PREFIX aasmm: <https://admin-shell.io/aas/3/2/>
+
+SELECT DISTINCT ?part ?aas
+WHERE {  
+  ?part a tool:Part .
+  ?s tool:uses+ ?part .
+  ?part aasCore:modeledIn ?aasAbstraction .
+  ?aasAbstraction aasCore:references ?aas .
+}
