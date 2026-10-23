@@ -1,0 +1,16 @@
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix def: <http://www.example.org/defectExample/> .
+@prefix ex: <http://www.example.org/defInstance/> .
+
+ex:ConnectionA a ex:ScrewConnection ;
+	ex:torque "30"^^xsd:int .
+	
+ex:ConnectionB a ex:ScrewConnection ;
+	ex:torque "27"^^xsd:int .
+	
+ex:ConnectionC a ex:ScrewConnection ;
+	ex:torque "34"^^xsd:int .
