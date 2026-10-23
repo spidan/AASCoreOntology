@@ -1,0 +1,45 @@
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX ex: <http://example.org/>
+PREFIX owl:  <http://www.w3.org/2002/07/owl#> 
+PREFIX rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+PREFIX tool: <http://www.example.org/TwinMap/Tool/> 
+PREFIX aasCore: <http://www.example.org/twinMap/AASCore/> 
+PREFIX aasmm: <https://admin-shell.io/aas/3/2/>
+PREFIX aas: <https://admin-shell.io/aas/3/0/> 
+PREFIX aas-abstractlangstring: <https://admin-shell.io/aas/3/0/AbstractLangString/> 
+PREFIX aas-administrativeinformation: <https://admin-shell.io/aas/3/0/AdministrativeInformation/> 
+PREFIX aas-datatypedefxsd: <https://admin-shell.io/aas/3/0/DataTypeDefXsd/> 
+PREFIX aas-haskind: <https://admin-shell.io/aas/3/0/HasKind/> 
+PREFIX aas-hassemantics: <https://admin-shell.io/aas/3/0/HasSemantics/> 
+PREFIX aas-identifiable: <https://admin-shell.io/aas/3/0/Identifiable/> 
+PREFIX aas-key: <https://admin-shell.io/aas/3/0/Key/> 
+PREFIX aas-keytypes: <https://admin-shell.io/aas/3/0/KeyTypes/> 
+PREFIX aas-modellingkind: <https://admin-shell.io/aas/3/0/ModellingKind/> 
+PREFIX aas-property: <https://admin-shell.io/aas/3/0/Property/> 
+PREFIX aas-qualifier: <https://admin-shell.io/aas/3/0/Qualifier/> 
+PREFIX aas-qualifierkind: <https://admin-shell.io/aas/3/0/QualifierKind/> 
+PREFIX aas-referable: <https://admin-shell.io/aas/3/0/Referable/> 
+PREFIX aas-reference: <https://admin-shell.io/aas/3/0/Reference/> 
+PREFIX aas-referencetypes: <https://admin-shell.io/aas/3/0/ReferenceTypes/> 
+PREFIX aas-submodel: <https://admin-shell.io/aas/3/0/Submodel/> 
+PREFIX aas-submodelelementcollection: <https://admin-shell.io/aas/3/0/SubmodelElementCollection/> 
+PREFIX ns1: <https://admin-shell.io/aas/3/0/SubmodelElementList/> 
+PREFIX ns2: <https://admin-shell.io/aas/3/0/Qualifiable/> 
+PREFIX ns3: <https://admin-shell.io/aas/3/0/Range/> 
+PREFIX ns4: <https://admin-shell.io/aas/3/0/ReferenceElement/> 
+PREFIX ns5: <https://admin-shell.io/aas/3/0/File/> 
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX aasInstancePref: <https://company.com/aas/https%3A%2F%2Fadmin-shell.io%2Fidta%2FSubmodelTemplate%2F>
+
+CONSTRUCT {
+    ex:DemoAAS a aasCore:AssetAdministrationShell ;
+    	aasCore:hasSubmodel ?aasInstanceSubmodel .
+	?aasInstanceSubmodel a ?entity ; aasCore:references ?submodel .
+} WHERE
+
+{
+ ?submodel a aas:Submodel ; aas-referable:idShort ?idShort .
+  BIND(IRI(CONCAT(STR(ex:), CONCAT(STR(?idShort)), "-aasDef")) AS ?aasInstanceSubmodel).
+  BIND(STRAFTER(STR(?submodel), STR(aasInstancePref:)) AS ?submodelName) .
+  BIND(IRI(CONCAT(STR(aasCore:), STR(?submodelName))) AS ?entity ) .
+}
